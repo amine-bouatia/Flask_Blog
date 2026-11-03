@@ -1,0 +1,162 @@
+
+{% extends "base.html" %}
+
+{% block title %}Blog{% endblock %}
+
+{% block body %}
+
+<section class="blog">
+
+    <div class="container">
+
+        <!-- Header -->
+        <header class="hd">
+
+            <img
+                src="{{ url_for('static', filename='img/banner-item-04.jpg') }}"
+                class="hd-img"
+                alt="Blog"
+            >
+
+            <h4 class="title">Our Blog</h4>
+
+        </header>
+
+
+        <!-- Blog Content -->
+        <section class="py-5">
+
+            <div class="row">
+
+                <div class="col-12 col-md-8">
+
+                    {% for blog in user %}
+
+                    <article class="blog-post">
+
+                        <img
+                            src="{{ url_for('static', filename='img/' + blog.img) }}"
+                            class="img-post"
+                            alt="{{ blog.title }}"
+                        >
+
+                        <div class="content-post p-4">
+
+                            <h5 class="text-uppercase primary py-2">
+                                {{ blog.tag }}
+                            </h5>
+
+                            <h3>
+
+                                <a
+                                    href="{{ url_for('views.blogs',
+                                    id=blog.id,
+                                    user_id=blog.user_id,
+                                    title=blog.title) }}"
+                                    class="primary text-decoration-none fw-bold"
+                                >
+                                    {{ blog.title }}
+                                </a>
+
+                            </h3>
+
+                            <p class="pt-2">
+
+                                <strong class="primary">
+                                    Posted
+                                </strong>
+
+                                <span>{{ blog.date }}</span>
+
+                            </p>
+
+                            <p class="mt-3 text-muted">
+
+                                {{ blog.content|striptags|truncate(200) }}
+
+                            </p>
+
+                            <a
+                                href="{{ url_for('views.blogs',
+                                id=blog.id,
+                                user_id=blog.user_id,
+                                title=blog.title) }}"
+                                class="btn btn-primary primary-btn mt-2"
+                            >
+                                Read More...
+                            </a>
+
+                        </div>
+
+                    </article>
+
+                    {% else %}
+
+                    <div class="alert alert-info">
+                        No posts available yet.
+                    </div>
+
+                    {% endfor %}
+
+                </div>
+
+
+                <!-- Sidebar -->
+                <aside class="col-12 col-md-4">
+
+                    <div class="recent mt-5">
+
+                        <h5 class="fw-bold text-uppercase">
+                            Recent Posts
+                        </h5>
+
+                        <a
+                            href="{{ url_for('views.home_Page') }}"
+                            class="text-decoration-none primary"
+                        >
+                            Home
+                        </a>
+
+                    </div>
+
+                    <div class="categories mt-5">
+
+                        <h5 class="fw-bold text-uppercase">
+                            Categories
+                        </h5>
+
+                        <ul class="list-catigory">
+
+                            {% for blog in user %}
+
+                            <li class="pt-3">
+
+                                <a
+                                    href="{{ url_for('views.blogs',
+                                    id=blog.id,
+                                    user_id=blog.user_id,
+                                    title=blog.title) }}"
+                                    class="text-decoration-none text-muted"
+                                >
+                                    {{ blog.tag }}
+                                </a>
+
+                            </li>
+
+                            {% endfor %}
+
+                        </ul>
+
+                    </div>
+
+                </aside>
+
+            </div>
+
+        </section>
+
+    </div>
+
+</section>
+
+{% endblock %}

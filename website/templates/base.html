@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+    <title>Blogish | {% block title %}{% endblock %}</title>
+</head>
+
+<body>
+
+    <main>
+
+        <!-- NAVBAR -->
+        <nav class="navbar navbar-light navbar-expand-md">
+
+            <div class="container-md">
+
+                <a href="{{ url_for('views.home_Page') }}"
+                   class="navbar-brand text-uppercase fw-bold">
+
+                    Blogish <span class="fs-3 dot">.</span>
+
+                </a>
+
+                <button class="navbar-toggler"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#navbarSupportedContent"
+                        aria-controls="navbarSupportedContent"
+                        aria-expanded="false"
+                        aria-label="Toggle navigation">
+
+                    <span class="navbar-toggler-icon"></span>
+
+                </button>
+
+
+                <div class="collapse navbar-collapse justify-content-end"
+                     id="navbarSupportedContent">
+
+                    <ul class="navbar-nav me-0">
+
+                        <!-- HOME -->
+                        <li class="nav-item">
+                            <a class="nav-link"
+                               href="{{ url_for('views.home_Page') }}">
+                                Home
+                            </a>
+                        </li>
+
+                        <!-- BLOG -->
+                        <li class="nav-item">
+                            <a class="nav-link"
+                               href="{{ url_for('views.blog_Page') }}">
+                                Blog
+                            </a>
+                        </li>
+
+                        <!-- ABOUT -->
+                        <li class="nav-item">
+                            <a class="nav-link"
+                               href="{{ url_for('views.about_Page') }}">
+                                About
+                            </a>
+                        </li>
+
+                        <!-- CONTACT -->
+                        <li class="nav-item">
+                            <a class="nav-link"
+                               href="{{ url_for('views.contact_Page') }}">
+                                Contact
+                            </a>
+                        </li>
+
+                        <!-- LOGIN -->
+                        <li class="nav-item mx-2">
+                            <a href="{{ url_for('auth.login_Page') }}"
+                               class="btn btn-primary primary-btn text-uppercase">
+                                Login
+                            </a>
+                        </li>
+
+                        <!-- SIGN UP -->
+                        <li class="nav-item">
+                            <a href="{{ url_for('auth.signin_Page') }}"
+                               class="btn btn-outline-secondary text-uppercase">
+                                Sign Up
+                            </a>
+                        </li>
+
+                    </ul>
+
+                </div>
+
+            </div>
+
+        </nav>
+        <!-- END NAVBAR -->
+
+
+        <!-- PAGE CONTENT -->
+        {% block body %}
+        {% endblock %}
+
+
+        <!-- FOOTER -->
+        <footer class="footer py-3 mt-5">
+
+            <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+
+                <li class="nav-item">
+                    <a href="{{ url_for('views.home_Page') }}"
+                       class="nav-link px-2 text-muted">
+                        Home
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="{{ url_for('views.about_Page') }}"
+                       class="nav-link px-2 text-muted">
+                        About Us
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="{{ url_for('views.contact_Page') }}"
+                       class="nav-link px-2 text-muted">
+                        Contact
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="{{ url_for('views.blog_Page') }}"
+                       class="nav-link px-2 text-muted">
+                        Blog
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="{{ url_for('auth.login_Page') }}"
+                       class="nav-link px-2 text-muted">
+                        Login
+                    </a>
+                </li>
+
+            </ul>
+
+            <p class="text-center text-muted">
+
+                ©
+
+                <script>
+                    document.write(new Date().getFullYear())
+                </script>
+
+                amine_code, Inc
+
+            </p>
+
+        </footer>
+        <!-- END FOOTER -->
+
+    </main>
+
+
+    <!-- JAVASCRIPT FILES -->
+
+    <script src="{{ url_for('static', filename='js/popper.min.js') }}"></script>
+
+    <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+
+    <script src="{{ url_for('static', filename='js/index.js') }}"></script>
+
+</body>
+
+</html>
